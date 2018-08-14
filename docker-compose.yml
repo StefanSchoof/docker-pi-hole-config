@@ -1,0 +1,27 @@
+version: "2.4"
+services:
+  pihole:
+    restart: unless-stopped
+    container_name: pihole
+    image: pihole/pihole:v4.0_armhf
+    volumes:
+      - "./pihole/:/etc/pihole/"
+      - "./dnsmasq.d/:/etc/dnsmasq.d/"
+    environment:
+      - ServerIP=${IP}
+      - ServerIPv6=${IPv6}
+      - DNS1=${DNS1}
+      - DNS2=${DNS2}
+      - TZ=Europe/Berlin
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "80:80"
+    networks:
+      - pihole_net
+networks:
+  pihole_net:
+    enable_ipv6: true
+    ipam:
+      config:
+        - subnet: "fd00::2:0:0:0/80"

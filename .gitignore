@@ -1,0 +1,4 @@
+dnsmasq.d/
+pihole/*
+!pihole/whitelist.txt
+.env
