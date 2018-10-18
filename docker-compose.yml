@@ -3,7 +3,7 @@ services:
   pihole:
     restart: unless-stopped
     container_name: pihole
-    image: pihole/pihole:v4.0_armhf
+    image: pihole/pihole
     volumes:
       - "./pihole/:/etc/pihole/"
       - "./dnsmasq.d/:/etc/dnsmasq.d/"
